@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://BaseEnv.tres" type="Environment" id=1]
 [ext_resource path="res://RigidBody2D.gd" type="Script" id=2]
@@ -9,11 +9,13 @@
 [ext_resource path="res://5.png" type="Texture" id=7]
 [ext_resource path="res://6.png" type="Texture" id=8]
 [ext_resource path="res://0.png" type="Texture" id=9]
+[ext_resource path="res://ground.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 7.98442, 6.59446 )
+_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="SpriteFrames" id=2]
 
@@ -30,43 +32,116 @@ animations = [ {
 } ]
 _sections_unfolded = [ "Resource" ]
 
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 23.0678, 10 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" index="0"]
 
 environment = ExtResource( 1 )
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." index="0"]
+[node name="Body2D" type="KinematicBody2D" parent="." index="0"]
 
-position = Vector2( 64.8423, 110.728 )
+position = Vector2( 53.4754, 77.689 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
-mode = 0
-mass = 1.0
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pause", "Pickable", "Transform", "Visibility", "collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body2D" index="0"]
+
+position = Vector2( 0, 0.867223 )
+scale = Vector2( 1, 2.31408 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Body2D" index="1"]
+
+position = Vector2( 3.8147e-06, 0.622589 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+animation = "standing"
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( 55.5465, 136.803 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 
-shape = SubResource( 1 )
+position = Vector2( -0.952217, 0.317413 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Visibility" ]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="RigidBody2D" index="1"]
+[node name="Sprite" type="Sprite" parent="StaticBody2D" index="1"]
 
-frames = SubResource( 2 )
-animation = "standing"
+position = Vector2( -1.31878, -0.140732 )
+scale = Vector2( 0.163706, 0.163707 )
+texture = ExtResource( 10 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( 108.236, 136.803 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D2" index="0"]
+
+position = Vector2( -1.31878, -0.140717 )
+scale = Vector2( 0.163706, 0.163707 )
+texture = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="1"]
+
+position = Vector2( -0.952217, 0.317406 )
+shape = SubResource( 3 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="3"]
+
+editor/display_folded = true
+position = Vector2( 4.44372, 136.486 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D3" index="0"]
+
+position = Vector2( -1.08901, -0.830017 )
+scale = Vector2( 0.163706, 0.163707 )
+texture = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" index="1"]
+
+position = Vector2( -0.952217, 0.317406 )
+shape = SubResource( 3 )
 
 

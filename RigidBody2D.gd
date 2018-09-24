@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 # class member variables go here, for example:
 # var a = 2
@@ -35,4 +35,5 @@ func get_input():
 		
 func _physics_process(delta):
 	get_input()
-	linear_velocity = velocity
+	self.find_node(AnimatedSprite)
+	move_and_slide(velocity)
