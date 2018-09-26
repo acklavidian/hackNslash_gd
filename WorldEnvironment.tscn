@@ -2,14 +2,16 @@
 
 [ext_resource path="res://BaseEnv.tres" type="Environment" id=1]
 [ext_resource path="res://RigidBody2D.gd" type="Script" id=2]
-[ext_resource path="res://1.png" type="Texture" id=3]
-[ext_resource path="res://2.png" type="Texture" id=4]
-[ext_resource path="res://3.png" type="Texture" id=5]
-[ext_resource path="res://4.png" type="Texture" id=6]
-[ext_resource path="res://5.png" type="Texture" id=7]
-[ext_resource path="res://6.png" type="Texture" id=8]
-[ext_resource path="res://0.png" type="Texture" id=9]
+[ext_resource path="res://walking/1.png" type="Texture" id=3]
+[ext_resource path="res://walking/2.png" type="Texture" id=4]
+[ext_resource path="res://walking/3.png" type="Texture" id=5]
+[ext_resource path="res://walking/4.png" type="Texture" id=6]
+[ext_resource path="res://walking/5.png" type="Texture" id=7]
+[ext_resource path="res://walking/6.png" type="Texture" id=8]
+[ext_resource path="res://standing/0.png" type="Texture" id=9]
 [ext_resource path="res://ground.png" type="Texture" id=10]
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -120,7 +122,6 @@ shape = SubResource( 3 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." index="3"]
 
-editor/display_folded = true
 position = Vector2( 4.44372, 136.486 )
 input_pickable = false
 collision_layer = 1

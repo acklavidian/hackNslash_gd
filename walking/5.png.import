@@ -2,18 +2,18 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/0.png-30cc601930bfed815371fe5acba60898.stex"
+path="res://.import/5.png-8473e1fe04b107ccbb5c1e26e780670f.stex"
 
 [deps]
 
-source_file="res://0.png"
-dest_files=[ "res://.import/0.png-30cc601930bfed815371fe5acba60898.stex" ]
+source_file="res://walking/5.png"
+dest_files=[ "res://.import/5.png-8473e1fe04b107ccbb5c1e26e780670f.stex" ]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/lossy_quality=0.7
-compress/hdr_mode=1
+compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false

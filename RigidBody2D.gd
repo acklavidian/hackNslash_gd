@@ -1,39 +1,47 @@
 extends KinematicBody2D
+var velocity = Vector2()
+var speed = 50
+var direction 
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+enum { FORWARD, BACKWARD, UP, DOWN, HORIZONTAL, VERTICAL }
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	pass
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-
-var velocity = Vector2()
-var speed = 100
 
 func get_input():
 	velocity = Vector2()
+	velocity.y = 100
 	
 	if Input.is_action_pressed('right'):
 		velocity.x = speed
-		print('right')
 	if Input.is_action_pressed('left'):
 		velocity.x = -speed
-		print('left')
 	if Input.is_action_pressed('down'):
 		velocity.y = speed
-		print('down')
 	if Input.is_action_pressed('up'):
 		velocity.y = -speed
-		print('up')
+	
+func is_moving(direction):
+	print('direction', direction)
+	match direction:
+		FORWARD: return velocity.x > 0
+		BACKWARD: return velocity.x < 0
+		UP: return velocity.y > 0
+		DOWN: return velocity < 0
+		VERTICAL: return velocity.y != 0
+		HORIZONTAL: return velocity.x != 0
+		_: return is_moving(HORIZONTAL) || is_moving(VERTICAL)
 		
+	
+func react():
+	$AnimatedSprite.flip_h = is_moving(BACKWARD)
+	if is_moving(HORIZONTAL) && is_on_floor():
+		$AnimatedSprite.play('walking')
+	else:
+		$AnimatedSprite.play('standing')
+		
+	
 func _physics_process(delta):
 	get_input()
-	self.find_node(AnimatedSprite)
-	move_and_slide(velocity)
+	move_and_slide(velocity, Vector2(0, -1))
+	react()
