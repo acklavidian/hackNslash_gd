@@ -1,17 +1,38 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://BaseEnv.tres" type="Environment" id=1]
 [ext_resource path="res://RigidBody2D.gd" type="Script" id=2]
-[ext_resource path="res://walking/1.png" type="Texture" id=3]
-[ext_resource path="res://walking/2.png" type="Texture" id=4]
-[ext_resource path="res://walking/3.png" type="Texture" id=5]
-[ext_resource path="res://walking/4.png" type="Texture" id=6]
-[ext_resource path="res://walking/5.png" type="Texture" id=7]
-[ext_resource path="res://walking/6.png" type="Texture" id=8]
-[ext_resource path="res://standing/0.png" type="Texture" id=9]
-[ext_resource path="res://ground.png" type="Texture" id=10]
-
-
+[ext_resource path="res://waddling/0.png" type="Texture" id=3]
+[ext_resource path="res://waddling/1.png" type="Texture" id=4]
+[ext_resource path="res://waddling/2.png" type="Texture" id=5]
+[ext_resource path="res://waddling/3.png" type="Texture" id=6]
+[ext_resource path="res://pushing/0.png" type="Texture" id=7]
+[ext_resource path="res://pushing/1.png" type="Texture" id=8]
+[ext_resource path="res://pushing/2.png" type="Texture" id=9]
+[ext_resource path="res://pushing/3.png" type="Texture" id=10]
+[ext_resource path="res://pushing/4.png" type="Texture" id=11]
+[ext_resource path="res://walking/1.png" type="Texture" id=12]
+[ext_resource path="res://walking/2.png" type="Texture" id=13]
+[ext_resource path="res://walking/3.png" type="Texture" id=14]
+[ext_resource path="res://walking/4.png" type="Texture" id=15]
+[ext_resource path="res://walking/5.png" type="Texture" id=16]
+[ext_resource path="res://walking/6.png" type="Texture" id=17]
+[ext_resource path="res://standing/0.png" type="Texture" id=18]
+[ext_resource path="res://jumping/0.png" type="Texture" id=19]
+[ext_resource path="res://running/0.png" type="Texture" id=20]
+[ext_resource path="res://running/1.png" type="Texture" id=21]
+[ext_resource path="res://running/2.png" type="Texture" id=22]
+[ext_resource path="res://running/3.png" type="Texture" id=23]
+[ext_resource path="res://running/4.png" type="Texture" id=24]
+[ext_resource path="res://running/5.png" type="Texture" id=25]
+[ext_resource path="res://falling/0.png" type="Texture" id=26]
+[ext_resource path="res://landing/0.png" type="Texture" id=27]
+[ext_resource path="res://crouching/0.png" type="Texture" id=28]
+[ext_resource path="res://rolling/0.png" type="Texture" id=29]
+[ext_resource path="res://rolling/1.png" type="Texture" id=30]
+[ext_resource path="res://rolling/2.png" type="Texture" id=31]
+[ext_resource path="res://rolling/3.png" type="Texture" id=32]
+[ext_resource path="res://ground.png" type="Texture" id=33]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -22,15 +43,55 @@ _sections_unfolded = [ "Resource" ]
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "waddling",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "pushing",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "walking",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
+"frames": [ ExtResource( 18 ) ],
+"loop": false,
 "name": "standing",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "jumping",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "running",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 26 ) ],
+"loop": true,
+"name": "falling",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ) ],
+"loop": false,
+"name": "landing",
+"speed": 0.01
+}, {
+"frames": [ ExtResource( 28 ) ],
+"loop": true,
+"name": "crouching",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "rolling",
+"speed": 10.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -39,29 +100,43 @@ _sections_unfolded = [ "Resource" ]
 custom_solver_bias = 0.0
 extents = Vector2( 23.0678, 10 )
 
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 116.651, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 60.0045, 10 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" index="0"]
 
 environment = ExtResource( 1 )
 
 [node name="Body2D" type="KinematicBody2D" parent="." index="0"]
 
-position = Vector2( 53.4754, 77.689 )
+position = Vector2( 46.1578, 52.723 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 2 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pause", "Pickable", "Transform", "Visibility", "collision" ]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body2D" index="0"]
 
 position = Vector2( 0, 0.867223 )
 scale = Vector2( 1, 2.31408 )
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body2D" index="1"]
 
-position = Vector2( 3.8147e-06, 0.622589 )
+position = Vector2( -0.45953, 0.421906 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "standing"
@@ -70,7 +145,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
 
 editor/display_folded = true
-position = Vector2( 55.5465, 136.803 )
+position = Vector2( 44.0649, 111.416 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -92,12 +167,12 @@ _sections_unfolded = [ "Visibility" ]
 
 position = Vector2( -1.31878, -0.140732 )
 scale = Vector2( 0.163706, 0.163707 )
-texture = ExtResource( 10 )
+texture = ExtResource( 33 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." index="2"]
 
 editor/display_folded = true
-position = Vector2( 108.236, 136.803 )
+position = Vector2( 232.299, 41.2782 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -109,20 +184,21 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="StaticBody2D2" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
+
+position = Vector2( -0.952209, 0.317406 )
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D2" index="1"]
 
 position = Vector2( -1.31878, -0.140717 )
 scale = Vector2( 0.163706, 0.163707 )
-texture = ExtResource( 10 )
+texture = ExtResource( 33 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="1"]
+[node name="Floor" type="StaticBody2D" parent="." index="3"]
 
-position = Vector2( -0.952217, 0.317406 )
-shape = SubResource( 3 )
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="." index="3"]
-
-position = Vector2( 4.44372, 136.486 )
+editor/display_folded = true
+position = Vector2( 81.8658, 143.758 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -134,15 +210,121 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="StaticBody2D3" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" index="0"]
+
+position = Vector2( 71.8849, 0.860901 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="Floor" index="1"]
+
+position = Vector2( -27.3208, -0.916904 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 33 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite2" type="Sprite" parent="Floor" index="2"]
+
+position = Vector2( 13.1413, -1.34735 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 33 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite3" type="Sprite" parent="Floor" index="3"]
+
+position = Vector2( 50.5903, -0.916904 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 33 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite4" type="Sprite" parent="Floor" index="4"]
+
+position = Vector2( 91.4829, -0.916901 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 33 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite6" type="Sprite" parent="Floor" index="5"]
+
+position = Vector2( 169.394, -0.916901 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 33 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite5" type="Sprite" parent="Floor" index="6"]
+
+position = Vector2( 131.945, -1.34735 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 33 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Wall" type="StaticBody2D" parent="." index="4"]
+
+position = Vector2( 277.289, 107.17 )
+rotation = -1.5708
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="WallShape" type="CollisionShape2D" parent="Wall" index="0"]
+
+position = Vector2( 12.0526, 0.43045 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Wall" index="1"]
+
+position = Vector2( -27.3208, -0.916904 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 33 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite2" type="Sprite" parent="Wall" index="2"]
+
+position = Vector2( 13.1413, -1.34735 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 33 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite3" type="Sprite" parent="Wall" index="3"]
+
+position = Vector2( 50.5903, -0.916904 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 33 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="5"]
+
+editor/display_folded = true
+position = Vector2( 142.99, 81.3434 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" index="0"]
+
+position = Vector2( -0.952209, 0.317406 )
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D3" index="1"]
 
 position = Vector2( -1.08901, -0.830017 )
 scale = Vector2( 0.163706, 0.163707 )
-texture = ExtResource( 10 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" index="1"]
-
-position = Vector2( -0.952217, 0.317406 )
-shape = SubResource( 3 )
+texture = ExtResource( 33 )
 
 
