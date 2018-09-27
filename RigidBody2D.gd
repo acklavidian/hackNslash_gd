@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-enum Direction { FORWARD BACKWARD UP DOWN HORIZONTAL VERTICAL }
+enum Direction { RIGHT LEFT UP DOWN HORIZONTAL VERTICAL }
 enum Status {
 	STANDING
 	WALKING
@@ -40,27 +40,33 @@ func get_input():
 		jump_count += 1
 		velocity.y = -jump_speed
 	if is_on_wall():
-		print('is on wall', velocity)
-		print('is moving', is_moving(FORWARD))
 		velocity.y = 0 if is_on_floor() else 10
 
 	
 func is_moving(direction):
 	match direction:
-		FORWARD: return velocity.x > 10
-		BACKWARD: return velocity.x < -10
+		RIGHT: return velocity.x > 10
+		LEFT: return velocity.x < -10
 		UP: return velocity.y < 10
 		DOWN: return velocity.y > -10
 		VERTICAL: return is_moving(UP) || is_moving(DOWN)
-		HORIZONTAL: return is_moving(FORWARD) || is_moving(BACKWARD)
+		HORIZONTAL: return is_moving(RIGHT) || is_moving(LEFT)
 		_: return is_moving(HORIZONTAL) || is_moving(VERTICAL)
-
-	
+		
+func is_collision_direction(direction):
+	var collision = get_slide_collision(0)
+	if collision:
+		match direction:
+			RIGHT: return collision.position.x < position.x && (collision.position.y - position.y) < 10
+			LEFT: return && collision.position.x > position.x && (collision.position.y - position.y) < 10
+		else:
+			return false
 func react():
-	$AnimatedSprite.flip_h = is_moving(BACKWARD)
+	$AnimatedSprite.flip_h = is_moving(LEFT)
 	if is_on_floor():
 		var is_crouching = $CollisionShape2D.scale.y < height
 		if is_on_wall():
+			$AnimatedSprite.flip_h = is_collision_direction(RIGHT)
 			$AnimatedSprite.play('pushing')
 		elif is_moving(HORIZONTAL):
 			var is_walking = abs(velocity.x) <= base_speed
@@ -72,17 +78,21 @@ func react():
 			$AnimatedSprite.play('crouching' if is_crouching else 'standing')
 	else:
 		if is_moving(UP):
-			$AnimatedSprite.play('jumping' if jump_count < 2 else 'rolling')
+			if velocity.y < -10:
+				$AnimatedSprite.play('jumping' if jump_count < 2 else 'rolling')
 		elif is_moving(DOWN):
-			$AnimatedSprite.play('falling' if jump_count < 2 else 'rolling')
+			if is_on_wall():
+				$AnimatedSprite.flip_h = is_collision_direction(RIGHT)
+				$AnimatedSprite.play('wall_sliding')
+			elif velocity.y > 10:
+				$AnimatedSprite.play('falling' if jump_count < 2 else 'rolling')
 		
 	
 func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
 		
+	get_input()
 	velocity = move_and_slide(velocity, Vector2(0, -1))
-	print(velocity.x)
 
 	react()
-	get_input()

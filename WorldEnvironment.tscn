@@ -1,38 +1,39 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://BaseEnv.tres" type="Environment" id=1]
 [ext_resource path="res://RigidBody2D.gd" type="Script" id=2]
-[ext_resource path="res://waddling/0.png" type="Texture" id=3]
-[ext_resource path="res://waddling/1.png" type="Texture" id=4]
-[ext_resource path="res://waddling/2.png" type="Texture" id=5]
-[ext_resource path="res://waddling/3.png" type="Texture" id=6]
-[ext_resource path="res://pushing/0.png" type="Texture" id=7]
-[ext_resource path="res://pushing/1.png" type="Texture" id=8]
-[ext_resource path="res://pushing/2.png" type="Texture" id=9]
-[ext_resource path="res://pushing/3.png" type="Texture" id=10]
-[ext_resource path="res://pushing/4.png" type="Texture" id=11]
-[ext_resource path="res://walking/1.png" type="Texture" id=12]
-[ext_resource path="res://walking/2.png" type="Texture" id=13]
-[ext_resource path="res://walking/3.png" type="Texture" id=14]
-[ext_resource path="res://walking/4.png" type="Texture" id=15]
-[ext_resource path="res://walking/5.png" type="Texture" id=16]
-[ext_resource path="res://walking/6.png" type="Texture" id=17]
-[ext_resource path="res://standing/0.png" type="Texture" id=18]
-[ext_resource path="res://jumping/0.png" type="Texture" id=19]
-[ext_resource path="res://running/0.png" type="Texture" id=20]
-[ext_resource path="res://running/1.png" type="Texture" id=21]
-[ext_resource path="res://running/2.png" type="Texture" id=22]
-[ext_resource path="res://running/3.png" type="Texture" id=23]
-[ext_resource path="res://running/4.png" type="Texture" id=24]
-[ext_resource path="res://running/5.png" type="Texture" id=25]
-[ext_resource path="res://falling/0.png" type="Texture" id=26]
-[ext_resource path="res://landing/0.png" type="Texture" id=27]
-[ext_resource path="res://crouching/0.png" type="Texture" id=28]
-[ext_resource path="res://rolling/0.png" type="Texture" id=29]
-[ext_resource path="res://rolling/1.png" type="Texture" id=30]
-[ext_resource path="res://rolling/2.png" type="Texture" id=31]
-[ext_resource path="res://rolling/3.png" type="Texture" id=32]
-[ext_resource path="res://ground.png" type="Texture" id=33]
+[ext_resource path="res://pushing/0.png" type="Texture" id=3]
+[ext_resource path="res://pushing/1.png" type="Texture" id=4]
+[ext_resource path="res://pushing/2.png" type="Texture" id=5]
+[ext_resource path="res://pushing/3.png" type="Texture" id=6]
+[ext_resource path="res://pushing/4.png" type="Texture" id=7]
+[ext_resource path="res://walking/1.png" type="Texture" id=8]
+[ext_resource path="res://walking/2.png" type="Texture" id=9]
+[ext_resource path="res://walking/3.png" type="Texture" id=10]
+[ext_resource path="res://walking/4.png" type="Texture" id=11]
+[ext_resource path="res://walking/5.png" type="Texture" id=12]
+[ext_resource path="res://walking/6.png" type="Texture" id=13]
+[ext_resource path="res://standing/0.png" type="Texture" id=14]
+[ext_resource path="res://jumping/0.png" type="Texture" id=15]
+[ext_resource path="res://running/0.png" type="Texture" id=16]
+[ext_resource path="res://running/1.png" type="Texture" id=17]
+[ext_resource path="res://running/2.png" type="Texture" id=18]
+[ext_resource path="res://running/3.png" type="Texture" id=19]
+[ext_resource path="res://running/4.png" type="Texture" id=20]
+[ext_resource path="res://running/5.png" type="Texture" id=21]
+[ext_resource path="res://falling/0.png" type="Texture" id=22]
+[ext_resource path="res://landing/0.png" type="Texture" id=23]
+[ext_resource path="res://crouching/0.png" type="Texture" id=24]
+[ext_resource path="res://rolling/0.png" type="Texture" id=25]
+[ext_resource path="res://rolling/1.png" type="Texture" id=26]
+[ext_resource path="res://rolling/2.png" type="Texture" id=27]
+[ext_resource path="res://rolling/3.png" type="Texture" id=28]
+[ext_resource path="res://wall_sliding/0.png" type="Texture" id=29]
+[ext_resource path="res://waddling/0.png" type="Texture" id=30]
+[ext_resource path="res://waddling/1.png" type="Texture" id=31]
+[ext_resource path="res://waddling/2.png" type="Texture" id=32]
+[ext_resource path="res://waddling/3.png" type="Texture" id=33]
+[ext_resource path="res://ground.png" type="Texture" id=34]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -43,55 +44,60 @@ _sections_unfolded = [ "Resource" ]
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "waddling",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "pushing",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "walking",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": false,
 "name": "standing",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [ ExtResource( 15 ) ],
 "loop": true,
 "name": "jumping",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
+"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
 "loop": true,
 "name": "running",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 26 ) ],
+"frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "falling",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 27 ) ],
+"frames": [ ExtResource( 23 ) ],
 "loop": false,
 "name": "landing",
 "speed": 0.01
 }, {
-"frames": [ ExtResource( 28 ) ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
 "name": "crouching",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ) ],
+"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ) ],
 "loop": true,
 "name": "rolling",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 29 ) ],
+"loop": true,
+"name": "wall_sliding",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ) ],
+"loop": true,
+"name": "waddling",
+"speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -100,12 +106,12 @@ _sections_unfolded = [ "Resource" ]
 custom_solver_bias = 0.0
 extents = Vector2( 23.0678, 10 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 116.651, 10 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 60.0045, 10 )
@@ -136,7 +142,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body2D" index="1"]
 
-position = Vector2( -0.45953, 0.421906 )
+position = Vector2( -0.45953, -0.578094 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "standing"
@@ -167,7 +173,7 @@ _sections_unfolded = [ "Visibility" ]
 
 position = Vector2( -1.31878, -0.140732 )
 scale = Vector2( 0.163706, 0.163707 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." index="2"]
 
@@ -193,7 +199,7 @@ shape = SubResource( 3 )
 
 position = Vector2( -1.31878, -0.140717 )
 scale = Vector2( 0.163706, 0.163707 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 
 [node name="Floor" type="StaticBody2D" parent="." index="3"]
 
@@ -213,49 +219,48 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" index="0"]
 
 position = Vector2( 71.8849, 0.860901 )
-scale = Vector2( 1, 1 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Floor" index="1"]
 
 position = Vector2( -27.3208, -0.916904 )
 scale = Vector2( 0.139547, 0.139547 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite2" type="Sprite" parent="Floor" index="2"]
 
 position = Vector2( 13.1413, -1.34735 )
 scale = Vector2( 0.139547, 0.139547 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite3" type="Sprite" parent="Floor" index="3"]
 
 position = Vector2( 50.5903, -0.916904 )
 scale = Vector2( 0.139547, 0.139547 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite4" type="Sprite" parent="Floor" index="4"]
 
 position = Vector2( 91.4829, -0.916901 )
 scale = Vector2( 0.139547, 0.139547 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite6" type="Sprite" parent="Floor" index="5"]
 
 position = Vector2( 169.394, -0.916901 )
 scale = Vector2( 0.139547, 0.139547 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite5" type="Sprite" parent="Floor" index="6"]
 
 position = Vector2( 131.945, -1.34735 )
 scale = Vector2( 0.139547, 0.139547 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Wall" type="StaticBody2D" parent="." index="4"]
@@ -277,28 +282,27 @@ __meta__ = {
 [node name="WallShape" type="CollisionShape2D" parent="Wall" index="0"]
 
 position = Vector2( 12.0526, 0.43045 )
-scale = Vector2( 1, 1 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="Wall" index="1"]
 
 position = Vector2( -27.3208, -0.916904 )
 scale = Vector2( 0.139547, 0.139547 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite2" type="Sprite" parent="Wall" index="2"]
 
 position = Vector2( 13.1413, -1.34735 )
 scale = Vector2( 0.139547, 0.139547 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite3" type="Sprite" parent="Wall" index="3"]
 
 position = Vector2( 50.5903, -0.916904 )
 scale = Vector2( 0.139547, 0.139547 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." index="5"]
@@ -325,6 +329,6 @@ shape = SubResource( 3 )
 
 position = Vector2( -1.08901, -0.830017 )
 scale = Vector2( 0.163706, 0.163707 )
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 
 
