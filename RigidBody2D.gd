@@ -58,9 +58,9 @@ func is_collision_direction(direction):
 	if collision:
 		match direction:
 			RIGHT: return collision.position.x < position.x && (collision.position.y - position.y) < 10
-			LEFT: return && collision.position.x > position.x && (collision.position.y - position.y) < 10
-		else:
-			return false
+			LEFT: return collision.position.x > position.x && (collision.position.y - position.y) < 10
+	else:
+		return false
 func react():
 	$AnimatedSprite.flip_h = is_moving(LEFT)
 	if is_on_floor():
