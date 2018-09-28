@@ -57,16 +57,21 @@ func is_collision_direction(direction):
 	var collision = get_slide_collision(0)
 	if collision:
 		match direction:
-			RIGHT: return collision.position.x < position.x && (collision.position.y - position.y) < 10
-			LEFT: return collision.position.x > position.x && (collision.position.y - position.y) < 10
+			LEFT: return collision.position.x < position.x && (collision.position.y - position.y) < 10
+			RIGHT: return collision.position.x > position.x && (collision.position.y - position.y) < 10
 	else:
 		return false
 func react():
-	$AnimatedSprite.flip_h = is_moving(LEFT)
+	if is_collision_direction(LEFT) || is_collision_direction(RIGHT):
+		var collision = get_slide_collision(0)
+		print('cx: ', collision.position.x, ', x: ', position.x)
+		print('Left: ', is_collision_direction(LEFT))
+		print('Right: ', is_collision_direction(RIGHT))
+	$AnimatedSprite.flip_h = is_collision_direction(LEFT) if is_on_wall() else is_moving(LEFT)
 	if is_on_floor():
 		var is_crouching = $CollisionShape2D.scale.y < height
 		if is_on_wall():
-			$AnimatedSprite.flip_h = is_collision_direction(RIGHT)
+			#$AnimatedSprite.flip_h = is_collision_direction(LEFT)
 			$AnimatedSprite.play('pushing')
 		elif is_moving(HORIZONTAL):
 			var is_walking = abs(velocity.x) <= base_speed
@@ -82,7 +87,7 @@ func react():
 				$AnimatedSprite.play('jumping' if jump_count < 2 else 'rolling')
 		elif is_moving(DOWN):
 			if is_on_wall():
-				$AnimatedSprite.flip_h = is_collision_direction(RIGHT)
+				#$AnimatedSprite.flip_h = is_collision_direction(LEFT)
 				$AnimatedSprite.play('wall_sliding')
 			elif velocity.y > 10:
 				$AnimatedSprite.play('falling' if jump_count < 2 else 'rolling')

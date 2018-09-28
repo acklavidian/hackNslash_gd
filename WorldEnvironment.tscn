@@ -122,7 +122,7 @@ environment = ExtResource( 1 )
 
 [node name="Body2D" type="KinematicBody2D" parent="." index="0"]
 
-position = Vector2( 46.1578, 52.723 )
+position = Vector2( 66.6402, 53.2107 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -151,7 +151,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
 
 editor/display_folded = true
-position = Vector2( 44.0649, 111.416 )
+position = Vector2( 175.25, 99.9617 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -204,7 +204,7 @@ texture = ExtResource( 34 )
 [node name="Floor" type="StaticBody2D" parent="." index="3"]
 
 editor/display_folded = true
-position = Vector2( 81.8658, 143.758 )
+position = Vector2( 81.8658, 143.318 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -305,10 +305,52 @@ scale = Vector2( 0.139547, 0.139547 )
 texture = ExtResource( 34 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." index="5"]
+[node name="Wall2" type="StaticBody2D" parent="." index="5"]
+
+position = Vector2( 30.5251, 82.7862 )
+rotation = -4.71194
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="WallShape" type="CollisionShape2D" parent="Wall2" index="0"]
+
+position = Vector2( 12.0526, 0.43045 )
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="Wall2" index="1"]
+
+position = Vector2( -27.3208, -0.916904 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 34 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite2" type="Sprite" parent="Wall2" index="2"]
+
+position = Vector2( 13.1413, -1.34735 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 34 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite3" type="Sprite" parent="Wall2" index="3"]
+
+position = Vector2( 50.5903, -0.916904 )
+scale = Vector2( 0.139547, 0.139547 )
+texture = ExtResource( 34 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="6"]
 
 editor/display_folded = true
-position = Vector2( 142.99, 81.3434 )
+position = Vector2( 114.705, 70.6145 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
