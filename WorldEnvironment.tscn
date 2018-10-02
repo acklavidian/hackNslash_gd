@@ -42,22 +42,22 @@
 [ext_resource path="res://Background/Layer_0001_8.png" type="Texture" id=40]
 [ext_resource path="res://Background/Layer_0000_9.png" type="Texture" id=41]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 23.0678, 10 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 116.651, 10 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 60.0045, 10 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=4]
 
 render_priority = 0
 trail_divisor = 1
@@ -97,13 +97,13 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Damping", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Radial Accel", "Spread", "Tangential Accel" ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 7.98442, 6.59446 )
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=6]
 
 animations = [ {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
@@ -194,7 +194,6 @@ _sections_unfolded = [ "Motion", "Visibility" ]
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
 
 position = Vector2( -7.02533, -147.689 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 centered = false
 region_enabled = true
@@ -213,7 +212,6 @@ _sections_unfolded = [ "Motion", "Visibility" ]
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4" index="0"]
 
 position = Vector2( -7.02533, -147.689 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
 centered = false
 region_enabled = true
@@ -232,7 +230,6 @@ _sections_unfolded = [ "Motion", "Visibility" ]
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3" index="0"]
 
 position = Vector2( -7.02533, -147.689 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 4 )
 centered = false
 region_enabled = true
@@ -251,7 +248,6 @@ _sections_unfolded = [ "Material", "Motion", "Visibility" ]
 [node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer2" index="0"]
 
 position = Vector2( -7.02533, -147.689 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 5 )
 centered = false
 region_enabled = true
@@ -260,7 +256,7 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="Node2D" type="Node2D" parent="." index="1"]
 
-modulate = Color( 0.527344, 0.527344, 0.527344, 1 )
+modulate = Color( 0.322128, 0.29895, 0.484375, 1 )
 self_modulate = Color( 0.730469, 0.730469, 0.730469, 1 )
 position = Vector2( 361.709, 119.023 )
 scale = Vector2( 1.25, 1.25 )
@@ -284,7 +280,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D" index="0"]
 
 position = Vector2( -0.952217, 0.317413 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="Sprite" type="Sprite" parent="Node2D/StaticBody2D" index="1"]
@@ -312,7 +308,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D6" index="0"]
 
 position = Vector2( -0.952217, 0.317413 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="Sprite" type="Sprite" parent="Node2D/StaticBody2D6" index="1"]
@@ -341,7 +337,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D4" index="0"]
 
 position = Vector2( -0.952217, 0.317413 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="Sprite" type="Sprite" parent="Node2D/StaticBody2D4" index="1"]
@@ -369,7 +365,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D2" index="0"]
 
 position = Vector2( -0.952209, 0.317406 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Node2D/StaticBody2D2" index="1"]
 
@@ -396,7 +392,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D5" index="0"]
 
 position = Vector2( -0.952209, 0.317406 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Node2D/StaticBody2D5" index="1"]
 
@@ -408,7 +404,6 @@ texture = ExtResource( 6 )
 
 editor/display_folded = true
 position = Vector2( -230.381, 59.1924 )
-scale = Vector2( 1, 1 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -423,7 +418,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Floor" index="0"]
 
 position = Vector2( 71.8849, 0.860901 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Node2D/Floor" index="1"]
 
@@ -471,7 +466,6 @@ _sections_unfolded = [ "Transform" ]
 
 editor/display_folded = true
 position = Vector2( 13.2028, 59.1924 )
-scale = Vector2( 1, 1 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -486,7 +480,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Floor2" index="0"]
 
 position = Vector2( 71.8849, 0.860901 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Node2D/Floor2" index="1"]
 
@@ -534,7 +528,6 @@ _sections_unfolded = [ "Transform" ]
 
 editor/display_folded = true
 position = Vector2( 256.786, 59.1924 )
-scale = Vector2( 1, 1 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -549,7 +542,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Floor3" index="0"]
 
 position = Vector2( 71.8849, 0.860901 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Node2D/Floor3" index="1"]
 
@@ -598,7 +591,6 @@ _sections_unfolded = [ "Transform" ]
 editor/display_folded = true
 position = Vector2( 491.29, 19.6588 )
 rotation = -1.5708
-scale = Vector2( 1, 1 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -614,7 +606,7 @@ __meta__ = {
 [node name="WallShape" type="CollisionShape2D" parent="Node2D/Wall" index="0"]
 
 position = Vector2( 12.0526, 0.43045 )
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Node2D/Wall" index="1"]
 
@@ -642,7 +634,6 @@ _sections_unfolded = [ "Transform" ]
 editor/display_folded = true
 position = Vector2( -282.068, -1.97079 )
 rotation = 1.57125
-scale = Vector2( 1, 1 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -658,7 +649,7 @@ __meta__ = {
 [node name="WallShape" type="CollisionShape2D" parent="Node2D/Wall2" index="0"]
 
 position = Vector2( 12.0526, 0.43045 )
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Node2D/Wall2" index="1"]
 
@@ -685,7 +676,6 @@ _sections_unfolded = [ "Transform" ]
 
 editor/display_folded = true
 position = Vector2( -197.21, -65.8433 )
-scale = Vector2( 1, 1 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -700,7 +690,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D3" index="0"]
 
 position = Vector2( -0.952209, 0.317406 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Node2D/StaticBody2D3" index="1"]
 
@@ -770,7 +760,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 6 )
+process_material = SubResource( 4 )
 texture = ExtResource( 8 )
 normal_map = null
 h_frames = 1
@@ -794,7 +784,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 6 )
+process_material = SubResource( 4 )
 texture = ExtResource( 8 )
 normal_map = null
 h_frames = 1
@@ -805,14 +795,14 @@ _sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "T
 
 position = Vector2( 0, 0.867226 )
 scale = Vector2( 1, 2.31408 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body2D" index="2"]
 
 position = Vector2( -0.45953, -0.578094 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 2 )
+frames = SubResource( 6 )
 animation = "standing"
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -820,7 +810,6 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 modulate = Color( 0.4375, 0.4375, 0.4375, 1 )
 position = Vector2( -85.6008, -147.689 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 40 )
 centered = false
 region_enabled = true
@@ -831,7 +820,6 @@ _sections_unfolded = [ "Offset", "Region", "Visibility" ]
 
 modulate = Color( 0.4375, 0.4375, 0.4375, 1 )
 position = Vector2( -85.6008, -147.689 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 41 )
 centered = false
 region_enabled = true
