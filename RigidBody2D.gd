@@ -54,13 +54,14 @@ func is_moving(direction):
 		_: return is_moving(HORIZONTAL) || is_moving(VERTICAL)
 		
 func is_collision_direction(direction):
-	var collision = get_slide_collision(0)
-	if collision:
-		match direction:
-			LEFT: return collision.position.x < position.x && (collision.position.y - position.y) < 10
-			RIGHT: return collision.position.x > position.x && (collision.position.y - position.y) < 10
-	else:
-		return false
+	if get_slide_count() > 0:
+		var collision = get_slide_collision(0)
+		if collision:
+			match direction:
+				LEFT: return collision.position.x < position.x && (collision.position.y - position.y) < 10
+				RIGHT: return collision.position.x > position.x && (collision.position.y - position.y) < 10
+		else:
+			return false
 		
 func react():
 	if is_collision_direction(LEFT) || is_collision_direction(RIGHT):
