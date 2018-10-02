@@ -85,8 +85,8 @@ damping = 100.0
 damping_random = 0.0
 angle = 180.0
 angle_random = 1.0
-scale = 0.63
-scale_random = 0.0
+scale = 0.35
+scale_random = 0.44
 color = Color( 1, 1, 1, 1 )
 hue_variation = 0.0
 hue_variation_random = 0.0
@@ -95,7 +95,7 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
-_sections_unfolded = [ "Angular Velocity", "Damping", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Radial Accel", "Spread", "Tangential Accel" ]
+_sections_unfolded = [ "Angular Velocity", "Damping", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Radial Accel", "Scale", "Spread", "Tangential Accel" ]
 
 [sub_resource type="RectangleShape2D" id=5]
 
@@ -179,14 +179,14 @@ scroll_base_offset = Vector2( 0, 0 )
 scroll_base_scale = Vector2( 1, 1 )
 scroll_limit_begin = Vector2( 0, 0 )
 scroll_limit_end = Vector2( 0, 0 )
-scroll_ignore_camera_zoom = true
+scroll_ignore_camera_zoom = false
 _sections_unfolded = [ "Scroll" ]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
 
 modulate = Color( 0.859375, 0.859375, 0.859375, 1 )
 position = Vector2( -78.5754, 0 )
-motion_scale = Vector2( 0.4, 0.4 )
+motion_scale = Vector2( 0.4, 1 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 0, 0 )
 _sections_unfolded = [ "Motion", "Visibility" ]
@@ -204,7 +204,7 @@ _sections_unfolded = [ "Offset", "Region", "Visibility" ]
 
 modulate = Color( 0.5, 0.5, 0.5, 1 )
 position = Vector2( -78.5754, 0 )
-motion_scale = Vector2( 0.5, 0.5 )
+motion_scale = Vector2( 0.5, 1 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 0, 0 )
 _sections_unfolded = [ "Motion", "Visibility" ]
@@ -222,7 +222,7 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 modulate = Color( 0.464844, 0.464844, 0.464844, 1 )
 position = Vector2( -78.5754, 0 )
-motion_scale = Vector2( 0.7, 0.7 )
+motion_scale = Vector2( 0.7, 1 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 0, 0 )
 _sections_unfolded = [ "Motion", "Visibility" ]
@@ -240,7 +240,7 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 self_modulate = Color( 0.945312, 0.945312, 0.945312, 1 )
 position = Vector2( -78.5754, 0 )
-motion_scale = Vector2( 0.9, 0.9 )
+motion_scale = Vector2( 0.9, 1 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 0, 0 )
 _sections_unfolded = [ "Material", "Motion", "Visibility" ]
@@ -700,9 +700,7 @@ texture = ExtResource( 6 )
 
 [node name="Body2D" type="KinematicBody2D" parent="." index="2"]
 
-editor/display_folded = true
-modulate = Color( 0.429688, 0.429688, 0.429688, 1 )
-self_modulate = Color( 0.582031, 0.582031, 0.582031, 1 )
+modulate = Color( 0.45018, 0.520413, 0.707031, 1 )
 position = Vector2( 112.245, 141.385 )
 scale = Vector2( 1.25, 1.25 )
 input_pickable = false
@@ -722,7 +720,7 @@ scale = Vector2( 0.8, 0.8 )
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 1, 1 )
+zoom = Vector2( 0.75, 0.75 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000
@@ -746,7 +744,8 @@ _sections_unfolded = [ "Smoothing", "Transform" ]
 [node name="Particles2D" type="Particles2D" parent="Body2D/Camera2D" index="0"]
 
 modulate = Color( 0.605469, 0.605469, 0.605469, 1 )
-position = Vector2( 21.641, -45.9873 )
+position = Vector2( 178.673, -69.8834 )
+scale = Vector2( 1, 1 )
 emitting = true
 amount = 15
 lifetime = 10.0
@@ -770,7 +769,8 @@ _sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "T
 [node name="Particles2D2" type="Particles2D" parent="Body2D/Camera2D" index="1"]
 
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 5.35516, -31.6875 )
+position = Vector2( 162.387, -55.5836 )
+scale = Vector2( 1, 1 )
 emitting = true
 amount = 15
 lifetime = 10.0
@@ -808,7 +808,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Sprite2" type="Sprite" parent="." index="3"]
 
-modulate = Color( 0.4375, 0.4375, 0.4375, 1 )
+modulate = Color( 0.925781, 0.925781, 0.925781, 1 )
 position = Vector2( -85.6008, -147.689 )
 texture = ExtResource( 40 )
 centered = false
@@ -818,7 +818,7 @@ _sections_unfolded = [ "Offset", "Region", "Visibility" ]
 
 [node name="Sprite3" type="Sprite" parent="." index="4"]
 
-modulate = Color( 0.4375, 0.4375, 0.4375, 1 )
+modulate = Color( 0.917969, 0.917969, 0.917969, 1 )
 position = Vector2( -85.6008, -147.689 )
 texture = ExtResource( 41 )
 centered = false
