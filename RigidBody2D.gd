@@ -2,14 +2,18 @@ extends KinematicBody2D
 
 enum Direction { RIGHT LEFT UP DOWN HORIZONTAL VERTICAL }
 enum Status {
-	ASCENDING
-	DESCENDING
 #	SLOW_MOVEMENT
 #	RAPID_MOVEMENT
+#	RAPID_VERTICAL_MOVEMENT
+	ASCENDING
+	DESCENDING
+	AIRBORN
 	HORIZONTAL_MOVEMENT
+	MOVING_LEFT
+	MOVING_RIGHT
+	MOVING
 	VERTICAL_MOVEMENT
 	RAPID_HORIZONTAL_MOVEMENT
-#	RAPID_VERTICAL_MOVEMENT
 	REDUCED_HEIGHT
 	TOUCHING
 	TOUCHING_RIGHT
@@ -23,22 +27,10 @@ var base_speed = 50
 var max_jump_count = 2
 var jump_count = 0
 var jump_speed = 100
-var height 
-var status = [] setget , get_status
+var height
+var status = {} setget , get_status
 
-func get_status ():
-	if is_moving(UP): status.append(ASCENDING)
-	if is_moving(DOWN): status.append(DESCENDING)
-	if is_on_floor(): status.append(TOUCHING_FLOOR) 
-	if is_on_wall(): status.appennd(TOUCHING_WALL)
-	if abs(velocity.x) <= base_speed: status.append(RAPID_HORIZONTAL_MOVEMENT)
-	if is_moving(HORIZONTAL): status.append(HORIZONTAL_MOVEMENT)
-	if is_moving(VERTICAL): status.append(VERTICAL_MOVEMENT)
-	if $CollisionShape2D.scale.y < height: status.append(REDUCED_HEIGHT)
-	if is_collision_direction(HORIZONTAL) || is_collition_direction(VERTICAL): status.append(TOUCHING)
-	if is_collision_direction(RIGHT): status.append(TOUCHING_RIGHT)
-	if is_collision_direction(LEFT): status.append(TOUCHING_LEFT)  
-	return status
+
 
 func _ready():
 	height = $CollisionShape2D.scale.y
@@ -46,7 +38,7 @@ func _ready():
 func get_input():
 	var speed = base_speed
 	velocity = Vector2(0, velocity.y + 5)
-	
+
 	if Input.is_action_pressed('run'):
 		speed *= 2
 	if Input.is_action_pressed('walk_right'):
@@ -63,17 +55,17 @@ func get_input():
 	if is_on_wall():
 		velocity.y = 0 if is_on_floor() else 10
 
-	
-func is_moving(direction):
+
+func is_moving(direction=null):
 	match direction:
-		RIGHT: return velocity.x > 10
-		LEFT: return velocity.x < -10
-		UP: return velocity.y < 10
-		DOWN: return velocity.y > -10
+		RIGHT: return velocity.x > 1
+		LEFT: return velocity.x < -1
+		UP: return velocity.y < -1
+		DOWN: return velocity.y > 1
 		VERTICAL: return is_moving(UP) || is_moving(DOWN)
 		HORIZONTAL: return is_moving(RIGHT) || is_moving(LEFT)
 		_: return is_moving(HORIZONTAL) || is_moving(VERTICAL)
-		
+
 func is_collision_direction(direction):
 	if get_slide_count() > 0:
 		var collision = get_slide_collision(0)
@@ -81,45 +73,88 @@ func is_collision_direction(direction):
 			match direction:
 				LEFT: return collision.position.x < position.x && (collision.position.y - position.y) < 10
 				RIGHT: return collision.position.x > position.x && (collision.position.y - position.y) < 10
-				HORIZONTAL: return is_collision_direction(LEFT) || is_collistion_direction(RIGHT)
+				HORIZONTAL: return is_collision_direction(LEFT) || is_collision_direction(RIGHT)
 				VERTICAL: return is_on_floor() || is_on_ceiling()
-		
+
+
+func get_status ():
+	status = {}
+	if is_moving(UP): status[ASCENDING] = true
+	if is_moving(DOWN): status[DESCENDING] = true
+	if is_on_floor(): status[TOUCHING_FLOOR] = true
+	if is_on_wall(): status[TOUCHING_WALL] = true
+	if abs(velocity.x) <= base_speed: status[RAPID_HORIZONTAL_MOVEMENT] = true
+	if is_moving(HORIZONTAL): status[HORIZONTAL_MOVEMENT] = true
+	if is_moving(VERTICAL): status[VERTICAL_MOVEMENT] = true
+	if $CollisionShape2D.scale.y < height: status[REDUCED_HEIGHT] = true
+	if self.is_collision_direction(HORIZONTAL) || self.is_collision_direction(VERTICAL): status[TOUCHING] = true
+	if is_collision_direction(RIGHT): status[TOUCHING_RIGHT] = true
+	if is_collision_direction(LEFT): status[TOUCHING_LEFT] = true
+	if is_moving(LEFT): status[MOVING_LEFT] = true
+	if is_moving(RIGHT): status[MOVING_RIGHT] = true
+	if is_moving(): status[MOVING] = true
+	if not is_on_floor(): status[AIRBORN] = true
+	return status
 
 func react():
-	# print ($AnimatedSprite.frame, ':of:', $AnimatedSprite.frames.get_frame_count($AnimatedSprite.animation))
-	if is_collision_direction(LEFT) || is_collision_direction(RIGHT):
-		var collision = get_slide_collision(0)
-		print('cx: ', collision.position.x, ', x: ', position.x)
-		print('Left: ', is_collision_direction(LEFT))
-		print('Right: ', is_collision_direction(RIGHT))
-	$AnimatedSprite.flip_h = is_collision_direction(LEFT) if is_on_wall() else is_moving(LEFT)
-	if is_on_floor():
-		var is_crouching = $CollisionShape2D.scale.y < height
-		if is_on_wall():
-			$AnimatedSprite.play('pushing')
-		elif is_moving(HORIZONTAL):
-			var is_walking = abs(velocity.x) <= base_speed
-			if is_crouching:
-				$AnimatedSprite.play('waddling' if is_walking else 'rolling')
-			else:
-				$AnimatedSprite.play('walking' if is_walking  else 'running')
-		else:
-			$AnimatedSprite.play('crouching' if is_crouching else 'standing')
-	else:
-		if is_moving(UP):
-			if velocity.y < -10:
-				$AnimatedSprite.play('jumping' if jump_count < 2 else 'rolling')
-		elif is_moving(DOWN):
-			if is_on_wall():
-				$AnimatedSprite.play('wall_sliding')
-			elif velocity.y > 10:
-				$AnimatedSprite.play('falling' if jump_count < 2 else 'rolling')
-		
-	
+	var status = self.status
+	var is_facing_backward = status.has(TOUCHING_LEFT) || status.has(MOVING_LEFT)
+
+	if status.has([TOUCHING_WALL, DESCENDING]):
+		is_facing_backward = !is_facing_backward
+
+
+	print('------')
+	print('left? ', is_moving(LEFT))
+
+	if status.has(MOVING_LEFT): print('MOVING_LEFT')
+	if status.has(TOUCHING_LEFT): print('TOUCHING_LEFT')
+	if status.has(TOUCHING_FLOOR): print('TOUCHING_FLOOR')
+	if status.has(DESCENDING): print('DESCENDING')
+
+	if status.has_all([HORIZONTAL_MOVEMENT, TOUCHING_FLOOR]): $AnimatedSprite.play('walking')
+	if status.has(HORIZONTAL_MOVEMENT):
+		$AnimatedSprite.flip_h = is_facing_backward
+	if status.has()
+
+#	$AnimatedSprite.flip_h = is_collision_direction(LEFT) if is_on_wall() else is_moving(LEFT)
+
+#func react():
+#	# print ($AnimatedSprite.frame, ':of:', $AnimatedSprite.frames.get_frame_count($AnimatedSprite.animation))
+#
+##	if is_collision_direction(LEFT) || is_collision_direction(RIGHT):
+##		var collision = get_slide_collision(0)
+##		print('cx: ', collision.position.x, ', x: ', position.x)
+##		print('Left: ', is_collision_direction(LEFT))
+##		print('Right: ', is_collision_direction(RIGHT))
+#	$AnimatedSprite.flip_h = is_collision_direction(LEFT) if is_on_wall() else is_moving(LEFT)
+#	if is_on_floor():
+#		var is_crouching = $CollisionShape2D.scale.y < height
+#		if is_on_wall():
+#			$AnimatedSprite.play('pushing')
+#		elif is_moving(HORIZONTAL):
+#			var is_walking = abs(velocity.x) <= base_speed
+#			if is_crouching:
+#				$AnimatedSprite.play('waddling' if is_walking else 'rolling')
+#			else:
+#				$AnimatedSprite.play('walking' if is_walking  else 'running')
+#		else:
+#			$AnimatedSprite.play('crouching' if is_crouching else 'standing')
+#	else:
+#		if is_moving(UP):
+#			if velocity.y < -10:
+#				$AnimatedSprite.play('jumping' if jump_count < 2 else 'rolling')
+#		elif is_moving(DOWN):
+#			if is_on_wall():
+#				$AnimatedSprite.play('wall_sliding')
+#			elif velocity.y > 10:
+#				$AnimatedSprite.play('falling' if jump_count < 2 else 'rolling')
+
+
 func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
-		
+
 	get_input()
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 
