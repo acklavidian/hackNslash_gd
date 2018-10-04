@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://BaseEnv.tres" type="Environment" id=1]
 [ext_resource path="res://Background/Layer_0009_2.png" type="Texture" id=2]
@@ -6,41 +6,42 @@
 [ext_resource path="res://Background/Layer_0005_5.png" type="Texture" id=4]
 [ext_resource path="res://Background/Layer_0003_6.png" type="Texture" id=5]
 [ext_resource path="res://ground.png" type="Texture" id=6]
-[ext_resource path="res://RigidBody2D.gd" type="Script" id=7]
-[ext_resource path="res://leaf.png" type="Texture" id=8]
-[ext_resource path="res://pushing/0.png" type="Texture" id=9]
-[ext_resource path="res://pushing/1.png" type="Texture" id=10]
-[ext_resource path="res://pushing/2.png" type="Texture" id=11]
-[ext_resource path="res://pushing/3.png" type="Texture" id=12]
-[ext_resource path="res://pushing/4.png" type="Texture" id=13]
-[ext_resource path="res://running/0.png" type="Texture" id=14]
-[ext_resource path="res://running/1.png" type="Texture" id=15]
-[ext_resource path="res://running/2.png" type="Texture" id=16]
-[ext_resource path="res://running/3.png" type="Texture" id=17]
-[ext_resource path="res://running/4.png" type="Texture" id=18]
-[ext_resource path="res://running/5.png" type="Texture" id=19]
-[ext_resource path="res://walking/1.png" type="Texture" id=20]
-[ext_resource path="res://walking/2.png" type="Texture" id=21]
-[ext_resource path="res://walking/3.png" type="Texture" id=22]
-[ext_resource path="res://walking/4.png" type="Texture" id=23]
-[ext_resource path="res://walking/5.png" type="Texture" id=24]
-[ext_resource path="res://walking/6.png" type="Texture" id=25]
-[ext_resource path="res://standing/0.png" type="Texture" id=26]
-[ext_resource path="res://jumping/0.png" type="Texture" id=27]
-[ext_resource path="res://falling/0.png" type="Texture" id=28]
-[ext_resource path="res://landing/0.png" type="Texture" id=29]
-[ext_resource path="res://crouching/0.png" type="Texture" id=30]
-[ext_resource path="res://rolling/0.png" type="Texture" id=31]
-[ext_resource path="res://rolling/1.png" type="Texture" id=32]
-[ext_resource path="res://rolling/2.png" type="Texture" id=33]
-[ext_resource path="res://rolling/3.png" type="Texture" id=34]
-[ext_resource path="res://wall_sliding/0.png" type="Texture" id=35]
-[ext_resource path="res://waddling/0.png" type="Texture" id=36]
-[ext_resource path="res://waddling/1.png" type="Texture" id=37]
-[ext_resource path="res://waddling/2.png" type="Texture" id=38]
-[ext_resource path="res://waddling/3.png" type="Texture" id=39]
-[ext_resource path="res://Background/Layer_0001_8.png" type="Texture" id=40]
-[ext_resource path="res://Background/Layer_0000_9.png" type="Texture" id=41]
+[ext_resource path="res://Sprite-0001.jpg" type="Texture" id=7]
+[ext_resource path="res://RigidBody2D.gd" type="Script" id=8]
+[ext_resource path="res://leaf.png" type="Texture" id=9]
+[ext_resource path="res://pushing/0.png" type="Texture" id=10]
+[ext_resource path="res://pushing/1.png" type="Texture" id=11]
+[ext_resource path="res://pushing/2.png" type="Texture" id=12]
+[ext_resource path="res://pushing/3.png" type="Texture" id=13]
+[ext_resource path="res://pushing/4.png" type="Texture" id=14]
+[ext_resource path="res://running/0.png" type="Texture" id=15]
+[ext_resource path="res://running/1.png" type="Texture" id=16]
+[ext_resource path="res://running/2.png" type="Texture" id=17]
+[ext_resource path="res://running/3.png" type="Texture" id=18]
+[ext_resource path="res://running/4.png" type="Texture" id=19]
+[ext_resource path="res://running/5.png" type="Texture" id=20]
+[ext_resource path="res://walking/1.png" type="Texture" id=21]
+[ext_resource path="res://walking/2.png" type="Texture" id=22]
+[ext_resource path="res://walking/3.png" type="Texture" id=23]
+[ext_resource path="res://walking/4.png" type="Texture" id=24]
+[ext_resource path="res://walking/5.png" type="Texture" id=25]
+[ext_resource path="res://walking/6.png" type="Texture" id=26]
+[ext_resource path="res://standing/0.png" type="Texture" id=27]
+[ext_resource path="res://jumping/0.png" type="Texture" id=28]
+[ext_resource path="res://falling/0.png" type="Texture" id=29]
+[ext_resource path="res://landing/0.png" type="Texture" id=30]
+[ext_resource path="res://crouching/0.png" type="Texture" id=31]
+[ext_resource path="res://rolling/0.png" type="Texture" id=32]
+[ext_resource path="res://rolling/1.png" type="Texture" id=33]
+[ext_resource path="res://rolling/2.png" type="Texture" id=34]
+[ext_resource path="res://rolling/3.png" type="Texture" id=35]
+[ext_resource path="res://wall_sliding/0.png" type="Texture" id=36]
+[ext_resource path="res://waddling/0.png" type="Texture" id=37]
+[ext_resource path="res://waddling/1.png" type="Texture" id=38]
+[ext_resource path="res://waddling/2.png" type="Texture" id=39]
+[ext_resource path="res://waddling/3.png" type="Texture" id=40]
+[ext_resource path="res://Background/Layer_0001_8.png" type="Texture" id=41]
+[ext_resource path="res://Background/Layer_0000_9.png" type="Texture" id=42]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -57,7 +58,12 @@ extents = Vector2( 116.651, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 60.0045, 10 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3.97934, 0.719818 )
+
+[sub_resource type="ParticlesMaterial" id=5]
 
 render_priority = 0
 trail_divisor = 1
@@ -97,66 +103,66 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Damping", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Radial Accel", "Scale", "Spread", "Tangential Accel" ]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
 extents = Vector2( 7.98442, 6.59446 )
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=7]
 
 animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "pushing",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
 "loop": true,
 "name": "running",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ) ],
 "loop": true,
 "name": "walking",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 26 ) ],
+"frames": [ ExtResource( 27 ) ],
 "loop": false,
 "name": "standing",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 27 ) ],
+"frames": [ ExtResource( 28 ) ],
 "loop": true,
 "name": "jumping",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 28 ) ],
+"frames": [ ExtResource( 29 ) ],
 "loop": true,
 "name": "falling",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 29 ) ],
+"frames": [ ExtResource( 30 ) ],
 "loop": false,
 "name": "landing",
 "speed": 0.01
 }, {
-"frames": [ ExtResource( 30 ) ],
+"frames": [ ExtResource( 31 ) ],
 "loop": true,
 "name": "crouching",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ) ],
+"frames": [ ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ) ],
 "loop": true,
 "name": "rolling",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 35 ) ],
+"frames": [ ExtResource( 36 ) ],
 "loop": true,
 "name": "wall_sliding",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ) ],
+"frames": [ ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ) ],
 "loop": true,
 "name": "waddling",
 "speed": 5.0
@@ -169,6 +175,7 @@ environment = ExtResource( 1 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
 
+editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -256,6 +263,7 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="Node2D" type="Node2D" parent="." index="1"]
 
+editor/display_folded = true
 modulate = Color( 0.322128, 0.29895, 0.484375, 1 )
 self_modulate = Color( 0.730469, 0.730469, 0.730469, 1 )
 position = Vector2( 361.709, 119.023 )
@@ -698,8 +706,99 @@ position = Vector2( -1.08901, -0.830017 )
 scale = Vector2( 0.163706, 0.163707 )
 texture = ExtResource( 6 )
 
+[node name="PinJoint2D" type="PinJoint2D" parent="Node2D" index="11"]
+
+position = Vector2( -220.151, -28.7445 )
+scale = Vector2( 0.8, 0.8 )
+node_a = NodePath("../secondBandana")
+node_b = NodePath("../firstBandana")
+bias = 0.0
+disable_collision = true
+softness = 0.0
+
+[node name="firstBandana" type="RigidBody2D" parent="Node2D" index="12"]
+
+editor/display_folded = true
+position = Vector2( -214.776, -2.52399 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 1e-05
+friction = 0.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/firstBandana" index="0"]
+
+position = Vector2( 3.97623, 0.610107 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Node2D/firstBandana" index="1"]
+
+texture = ExtResource( 7 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="secondBandana" type="RigidBody2D" parent="Node2D" index="13"]
+
+editor/display_folded = true
+position = Vector2( -246.052, -17.0717 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 0
+mass = 0.2
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/secondBandana" index="0"]
+
+position = Vector2( 3.97623, 0.610107 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Node2D/secondBandana" index="1"]
+
+texture = ExtResource( 7 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Node2D" index="14"]
+
+position = Vector2( -206.114, -1.74916 )
+scale = Vector2( 0.8, 0.8 )
+node_a = NodePath("../firstBandana")
+node_b = NodePath("../../Body2D")
+bias = 0.0
+disable_collision = true
+softness = 0.0
+
 [node name="Body2D" type="KinematicBody2D" parent="." index="2"]
 
+editor/display_folded = true
 modulate = Color( 0.45018, 0.520413, 0.707031, 1 )
 position = Vector2( 112.245, 141.385 )
 scale = Vector2( 1.25, 1.25 )
@@ -707,7 +806,7 @@ input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pause", "Pickable", "Transform", "Visibility", "collision" ]
 __meta__ = {
 "_edit_group_": true
@@ -745,7 +844,6 @@ _sections_unfolded = [ "Smoothing", "Transform" ]
 
 modulate = Color( 0.605469, 0.605469, 0.605469, 1 )
 position = Vector2( 178.673, -69.8834 )
-scale = Vector2( 1, 1 )
 emitting = true
 amount = 15
 lifetime = 10.0
@@ -759,8 +857,8 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 4 )
-texture = ExtResource( 8 )
+process_material = SubResource( 5 )
+texture = ExtResource( 9 )
 normal_map = null
 h_frames = 1
 v_frames = 1
@@ -770,7 +868,6 @@ _sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "T
 
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 162.387, -55.5836 )
-scale = Vector2( 1, 1 )
 emitting = true
 amount = 15
 lifetime = 10.0
@@ -784,8 +881,8 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 4 )
-texture = ExtResource( 8 )
+process_material = SubResource( 5 )
+texture = ExtResource( 9 )
 normal_map = null
 h_frames = 1
 v_frames = 1
@@ -795,14 +892,14 @@ _sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "T
 
 position = Vector2( 0, 0.867226 )
 scale = Vector2( 1, 2.31408 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body2D" index="2"]
 
 position = Vector2( -0.45953, -0.578094 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 6 )
+frames = SubResource( 7 )
 animation = "standing"
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -810,7 +907,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 modulate = Color( 0.925781, 0.925781, 0.925781, 1 )
 position = Vector2( -85.6008, -147.689 )
-texture = ExtResource( 40 )
+texture = ExtResource( 41 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 0, 400, 4000, 400 )
@@ -820,7 +917,7 @@ _sections_unfolded = [ "Offset", "Region", "Visibility" ]
 
 modulate = Color( 0.917969, 0.917969, 0.917969, 1 )
 position = Vector2( -85.6008, -147.689 )
-texture = ExtResource( 41 )
+texture = ExtResource( 42 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 0, 400, 4000, 400 )

@@ -2,14 +2,20 @@ extends KinematicBody2D
 
 enum Direction { RIGHT LEFT UP DOWN HORIZONTAL VERTICAL }
 enum Status {
-	STANDING
-	WALKING
-	RUNNING
-	JUMPING
-	FALLING
-	CROUCHING
-	ATTACKING
-	THROWING
+	ASCENDING
+	DESCENDING
+#	SLOW_MOVEMENT
+#	RAPID_MOVEMENT
+	HORIZONTAL_MOVEMENT
+	VERTICAL_MOVEMENT
+	RAPID_HORIZONTAL_MOVEMENT
+#	RAPID_VERTICAL_MOVEMENT
+	REDUCED_HEIGHT
+	TOUCHING
+	TOUCHING_RIGHT
+	TOUCHING_LEFT
+	TOUCHING_FLOOR
+	TOUCHING_WALL
 }
 
 var velocity = Vector2()
@@ -18,6 +24,21 @@ var max_jump_count = 2
 var jump_count = 0
 var jump_speed = 100
 var height 
+var status = [] setget , get_status
+
+func get_status ():
+	if is_moving(UP): status.append(ASCENDING)
+	if is_moving(DOWN): status.append(DESCENDING)
+	if is_on_floor(): status.append(TOUCHING_FLOOR) 
+	if is_on_wall(): status.appennd(TOUCHING_WALL)
+	if abs(velocity.x) <= base_speed: status.append(RAPID_HORIZONTAL_MOVEMENT)
+	if is_moving(HORIZONTAL): status.append(HORIZONTAL_MOVEMENT)
+	if is_moving(VERTICAL): status.append(VERTICAL_MOVEMENT)
+	if $CollisionShape2D.scale.y < height: status.append(REDUCED_HEIGHT)
+	if is_collision_direction(HORIZONTAL) || is_collition_direction(VERTICAL): status.append(TOUCHING)
+	if is_collision_direction(RIGHT): status.append(TOUCHING_RIGHT)
+	if is_collision_direction(LEFT): status.append(TOUCHING_LEFT)  
+	return status
 
 func _ready():
 	height = $CollisionShape2D.scale.y
@@ -60,10 +81,12 @@ func is_collision_direction(direction):
 			match direction:
 				LEFT: return collision.position.x < position.x && (collision.position.y - position.y) < 10
 				RIGHT: return collision.position.x > position.x && (collision.position.y - position.y) < 10
-		else:
-			return false
+				HORIZONTAL: return is_collision_direction(LEFT) || is_collistion_direction(RIGHT)
+				VERTICAL: return is_on_floor() || is_on_ceiling()
 		
+
 func react():
+	# print ($AnimatedSprite.frame, ':of:', $AnimatedSprite.frames.get_frame_count($AnimatedSprite.animation))
 	if is_collision_direction(LEFT) || is_collision_direction(RIGHT):
 		var collision = get_slide_collision(0)
 		print('cx: ', collision.position.x, ', x: ', position.x)
