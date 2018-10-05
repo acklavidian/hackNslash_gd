@@ -2,9 +2,6 @@ extends KinematicBody2D
 
 enum Direction { RIGHT LEFT UP DOWN HORIZONTAL VERTICAL }
 enum Status {
-#	SLOW_MOVEMENT
-#	RAPID_MOVEMENT
-#	RAPID_VERTICAL_MOVEMENT
 	ASCENDING
 	DESCENDING
 	AIRBORN
@@ -103,10 +100,26 @@ func get_status ():
 func react():
 	var status = self.status
 	var is_facing_backward = status.has(TOUCHING_LEFT) || status.has(MOVING_LEFT)
-
+	var animation = 'standing'
 	if status.has([TOUCHING_WALL, DESCENDING]):
 		is_facing_backward = !is_facing_backward
-
+	
+	if status.has(TOUCHING_FLOOR):
+		if status.has_all([REDUCED_HEIGHT, RAPID_HORIZONTAL_MOVEMENT]): animation = 'rolling'
+		elif status.has_all([REDUCED_HEIGHT, HORIZONTAL_MOVEMENT]): animation = 'waddling'
+		elif status.has(REDUCED_HEIGHT): animation = 'crouching'
+		elif status.has(RAPID_HORIZONTAL_MOVEMENT): animation = 'running'
+		elif status.has(HORIZONTAL_MOVEMENT): animation = 'walking'
+		else: animation = 'standing'
+	else:
+		if status.has_all([ASCENDING, MULTIPLE_JUMP]): animation = 'rolling'
+		elif status.has(ASCENDING): animation = 'jumping'
+		elif status.has_all([TOUCHING_WALL, DESCENDING]): animation = 'wall_sliding'
+		elif status.has(DESCENDING): animation = 'falling'
+	
+	if status.has(HORIZONTAL_MOVEMENT):
+		$AnimatedSprite.flip_h = is_facing_backward
+	$AnimatedSprite.play(animation)
 
 	print('------')
 	print('left? ', is_moving(LEFT))
@@ -118,56 +131,6 @@ func react():
 	if status.has(RAPID_HORIZONTAL_MOVEMENT): print('RAPID_HORIZONTAL_MOVEMENT')
 	if status.has(HORIZONTAL_MOVEMENT): print('HORIZONTAL_MOVEMENT')
 	
-	if status.has(HORIZONTAL_MOVEMENT):
-		$AnimatedSprite.flip_h = is_facing_backward
-	if status.has(TOUCHING_FLOOR):
-		if status.has_all([REDUCED_HEIGHT, RAPID_HORIZONTAL_MOVEMENT]): $AnimatedSprite.play('rolling')
-		elif status.has_all([REDUCED_HEIGHT, HORIZONTAL_MOVEMENT]): $AnimatedSprite.play('waddling')
-		elif status.has(REDUCED_HEIGHT): $AnimatedSprite.play('crouching')
-		elif status.has(RAPID_HORIZONTAL_MOVEMENT): $AnimatedSprite.play('running')
-		elif status.has(HORIZONTAL_MOVEMENT): $AnimatedSprite.play('walking')
-		else: $AnimatedSprite.play('standing')
-	else:
-		if status.has_all([ASCENDING, MULTIPLE_JUMP]): $AnimatedSprite.play('rolling')
-		elif status.has(ASCENDING): $AnimatedSprite.play('jumping')
-		elif status.has_all([TOUCHING_WALL, DESCENDING]): $AnimatedSprite.play('wall_sliding')
-		elif status.has(DESCENDING): $AnimatedSprite.play('falling')
-		
-
-#	$AnimatedSprite.flip_h = is_collision_direction(LEFT) if is_on_wall() else is_moving(LEFT)
-
-#func react():
-#	# print ($AnimatedSprite.frame, ':of:', $AnimatedSprite.frames.get_frame_count($AnimatedSprite.animation))
-#
-##	if is_collision_direction(LEFT) || is_collision_direction(RIGHT):
-##		var collision = get_slide_collision(0)
-##		print('cx: ', collision.position.x, ', x: ', position.x)
-##		print('Left: ', is_collision_direction(LEFT))
-##		print('Right: ', is_collision_direction(RIGHT))
-#	$AnimatedSprite.flip_h = is_collision_direction(LEFT) if is_on_wall() else is_moving(LEFT)
-#	if is_on_floor():
-#		var is_crouching = $CollisionShape2D.scale.y < height
-#		if is_on_wall():
-#			$AnimatedSprite.play('pushing')
-#		elif is_moving(HORIZONTAL):
-#			var is_walking = abs(velocity.x) <= base_speed
-#			if is_crouching:
-#				$AnimatedSprite.play('waddling' if is_walking else 'rolling')
-#			else:
-#				$AnimatedSprite.play('walking' if is_walking  else 'running')
-#		else:
-#			$AnimatedSprite.play('crouching' if is_crouching else 'standing')
-#	else:
-#		if is_moving(UP):
-#			if velocity.y < -10:
-#				$AnimatedSprite.play('jumping' if jump_count < 2 else 'rolling')
-#		elif is_moving(DOWN):
-#			if is_on_wall():
-#				$AnimatedSprite.play('wall_sliding')
-#			elif velocity.y > 10:
-#				$AnimatedSprite.play('falling' if jump_count < 2 else 'rolling')
-
-
 func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
