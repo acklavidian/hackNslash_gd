@@ -133,16 +133,6 @@ func react():
 	if status.has(HORIZONTAL_MOVEMENT):
 		$AnimatedSprite.flip_h = is_facing_backward
 	$AnimatedSprite.play(animation)
-
-	print('------')
-	print('left? ', is_moving(LEFT))
-
-	if status.has(MOVING_LEFT): print('MOVING_LEFT')
-	if status.has(TOUCHING_LEFT): print('TOUCHING_LEFT')
-	if status.has(TOUCHING_FLOOR): print('TOUCHING_FLOOR')
-	if status.has(DESCENDING): print('DESCENDING')
-	if status.has(RAPID_HORIZONTAL_MOVEMENT): print('RAPID_HORIZONTAL_MOVEMENT')
-	if status.has(HORIZONTAL_MOVEMENT): print('HORIZONTAL_MOVEMENT')
 	
 func _physics_process(delta):
 	if is_on_floor():
