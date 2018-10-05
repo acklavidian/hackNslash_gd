@@ -28,18 +28,29 @@ var jump_count = 0
 var jump_speed = 100
 var height
 var status = {} setget , get_status
+var debug_output
 
 
 
 func _ready():
 	height = $CollisionShape2D.scale.y
-
+	debug_output = $Camera2D.get_node('Debug')
+	
 func get_input():
 	var speed = base_speed
 	velocity = Vector2(0, velocity.y + 5)
 
+	if is_on_wall() && is_moving(DOWN):
+		velocity.y = 0 if is_on_floor() else 10
+	if Input.is_action_just_pressed('jump') && jump_count < max_jump_count:
+		jump_count += 1
+		velocity.y = -jump_speed
+		if is_on_wall() && !is_on_floor():
+			base_speed = -base_speed
 	if Input.is_action_pressed('run'):
 		speed *= 2
+	if Input.is_action_just_released('walk_right') || Input.is_action_just_released('walk_left'):
+		base_speed = abs(base_speed)
 	if Input.is_action_pressed('walk_right'):
 		velocity.x = speed
 	if Input.is_action_pressed('walk_left'):
@@ -48,11 +59,6 @@ func get_input():
 		$CollisionShape2D.scale.y = $CollisionShape2D.scale.y * 0.5
 	if Input.is_action_just_released('crouch'):
 		$CollisionShape2D.scale.y = $CollisionShape2D.scale.y * 2
-	if Input.is_action_just_pressed('jump') && jump_count < max_jump_count:
-		jump_count += 1
-		velocity.y = -jump_speed
-	if is_on_wall():
-		velocity.y = 0 if is_on_floor() else 10
 
 
 func is_moving(direction=null):
@@ -97,6 +103,13 @@ func get_status ():
 	if not is_on_floor(): status[AIRBORN] = true
 	return status
 
+func debug ():
+	var output = ''
+	for flag_index in status.keys():
+		output += Status.keys()[flag_index] + '\n'
+	 debug_output.text = output
+	
+	
 func react():
 	var status = self.status
 	var is_facing_backward = status.has(TOUCHING_LEFT) || status.has(MOVING_LEFT)
@@ -134,8 +147,10 @@ func react():
 func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
-
+	elif is_on_wall():
+		jump_count = 1
 	get_input()
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 
 	react()
+	debug()
