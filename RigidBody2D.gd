@@ -20,6 +20,8 @@ enum Status {
 	TOUCHING_LEFT
 	TOUCHING_FLOOR
 	TOUCHING_WALL
+	MULTIPLE_JUMP
+	MAX_JUMP
 }
 
 var velocity = Vector2()
@@ -83,7 +85,7 @@ func get_status ():
 	if is_moving(DOWN): status[DESCENDING] = true
 	if is_on_floor(): status[TOUCHING_FLOOR] = true
 	if is_on_wall(): status[TOUCHING_WALL] = true
-	if abs(velocity.x) <= base_speed: status[RAPID_HORIZONTAL_MOVEMENT] = true
+	if abs(velocity.x) > base_speed: status[RAPID_HORIZONTAL_MOVEMENT] = true
 	if is_moving(HORIZONTAL): status[HORIZONTAL_MOVEMENT] = true
 	if is_moving(VERTICAL): status[VERTICAL_MOVEMENT] = true
 	if $CollisionShape2D.scale.y < height: status[REDUCED_HEIGHT] = true
@@ -93,6 +95,8 @@ func get_status ():
 	if is_moving(LEFT): status[MOVING_LEFT] = true
 	if is_moving(RIGHT): status[MOVING_RIGHT] = true
 	if is_moving(): status[MOVING] = true
+	if jump_count >= max_jump_count: status[MAX_JUMP] = true
+	if jump_count > 1: status[MULTIPLE_JUMP] = true
 	if not is_on_floor(): status[AIRBORN] = true
 	return status
 
@@ -111,11 +115,24 @@ func react():
 	if status.has(TOUCHING_LEFT): print('TOUCHING_LEFT')
 	if status.has(TOUCHING_FLOOR): print('TOUCHING_FLOOR')
 	if status.has(DESCENDING): print('DESCENDING')
-
-	if status.has_all([HORIZONTAL_MOVEMENT, TOUCHING_FLOOR]): $AnimatedSprite.play('walking')
+	if status.has(RAPID_HORIZONTAL_MOVEMENT): print('RAPID_HORIZONTAL_MOVEMENT')
+	if status.has(HORIZONTAL_MOVEMENT): print('HORIZONTAL_MOVEMENT')
+	
 	if status.has(HORIZONTAL_MOVEMENT):
 		$AnimatedSprite.flip_h = is_facing_backward
-	if status.has()
+	if status.has(TOUCHING_FLOOR):
+		if status.has_all([REDUCED_HEIGHT, RAPID_HORIZONTAL_MOVEMENT]): $AnimatedSprite.play('rolling')
+		elif status.has_all([REDUCED_HEIGHT, HORIZONTAL_MOVEMENT]): $AnimatedSprite.play('waddling')
+		elif status.has(REDUCED_HEIGHT): $AnimatedSprite.play('crouching')
+		elif status.has(RAPID_HORIZONTAL_MOVEMENT): $AnimatedSprite.play('running')
+		elif status.has(HORIZONTAL_MOVEMENT): $AnimatedSprite.play('walking')
+		else: $AnimatedSprite.play('standing')
+	else:
+		if status.has_all([ASCENDING, MULTIPLE_JUMP]): $AnimatedSprite.play('rolling')
+		elif status.has(ASCENDING): $AnimatedSprite.play('jumping')
+		elif status.has_all([TOUCHING_WALL, DESCENDING]): $AnimatedSprite.play('wall_sliding')
+		elif status.has(DESCENDING): $AnimatedSprite.play('falling')
+		
 
 #	$AnimatedSprite.flip_h = is_collision_direction(LEFT) if is_on_wall() else is_moving(LEFT)
 
