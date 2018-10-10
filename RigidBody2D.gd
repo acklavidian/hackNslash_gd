@@ -37,13 +37,13 @@ var is_attacking = false
 func _ready():
 	height = $CollisionShape2D.scale.y
 	debug_output = $Camera2D.get_node('Debug')
-	
+func is_touching_wall():
+	return $RightRay.is_colliding() || $LeftRay.is_colliding()
 func get_input():
 	var speed = 0
-	velocity = Vector2(velocity.x, velocity.y + 5)
-
-	if is_on_wall() && is_moving(DOWN):
-		velocity.y = 0 if is_on_floor() else 10
+	if velocity.y < 200: velocity.y += 5
+	if is_touching_wall() && is_moving(DOWN):
+		if !is_on_floor(): velocity.y = 5
 	if Input.is_action_just_pressed('jump') && jump_count < max_jump_count:
 		jump_count += 1
 		velocity.y = -jump_speed
@@ -67,6 +67,7 @@ func get_input():
 	if is_animation_at_end('attacking'):
 		is_attacking = false
 	velocity.x = speed
+	velocity = velocity
 	
 func is_animation_at_end (animation_name = $AnimatedSprite.animation):
 	var current_frame = $AnimatedSprite.frame + 1
@@ -98,15 +99,15 @@ func get_status ():
 	status = {}
 	if is_moving(UP): status[ASCENDING] = true
 	if is_moving(DOWN): status[DESCENDING] = true
-	if is_on_floor(): status[TOUCHING_FLOOR] = true
-	if is_on_wall(): status[TOUCHING_WALL] = true
+	if $FloorRay.is_colliding(): status[TOUCHING_FLOOR] = true
+	if $RightRay.is_colliding() || $LeftRay.is_colliding(): status[TOUCHING_WALL] = true
 	if abs(velocity.x) > abs(base_speed): status[RAPID_HORIZONTAL_MOVEMENT] = true
 	if is_moving(HORIZONTAL): status[HORIZONTAL_MOVEMENT] = true
 	if is_moving(VERTICAL): status[VERTICAL_MOVEMENT] = true
 	if $CollisionShape2D.scale.y < height: status[REDUCED_HEIGHT] = true
 	if is_on_ceiling() || is_on_wall() || is_on_floor(): status[TOUCHING] = true
-	if is_collision_direction(RIGHT): status[TOUCHING_RIGHT] = true
-	if is_collision_direction(LEFT): status[TOUCHING_LEFT] = true
+	if $RightRay.is_colliding(): status[TOUCHING_RIGHT] = true
+	if $LeftRay.is_colliding(): status[TOUCHING_LEFT] = true
 	if is_moving(LEFT): status[MOVING_LEFT] = true
 	if is_moving(RIGHT): status[MOVING_RIGHT] = true
 	if is_moving(): status[MOVING] = true
@@ -135,8 +136,8 @@ func react():
 		elif status.has_all([REDUCED_HEIGHT, HORIZONTAL_MOVEMENT]): animation = 'waddling'
 		elif status.has(REDUCED_HEIGHT): animation = 'crouching'
 		elif status.has(RAPID_HORIZONTAL_MOVEMENT): animation = 'running'
+		elif status.has_all([TOUCHING_WALL, TOUCHING_FLOOR, HORIZONTAL_MOVEMENT]): animation = 'pushing'
 		elif status.has(HORIZONTAL_MOVEMENT): animation = 'walking'
-		elif status.has_all([TOUCHING_WALL, HORIZONTAL_MOVEMENT]): animation = 'pushing'
 		else: animation = 'standing'
 	else:
 		if status.has_all([ASCENDING, MULTIPLE_JUMP]): animation = 'rolling'
@@ -156,10 +157,9 @@ func _physics_process(delta):
 	elif is_on_wall():
 		jump_count = 1
 	get_input()
-	if abs(velocity.y) < 0.1: velocity.y = 0
-	if abs(velocity.x) < 0.1: velocity.x = 0
-	print('b: ', velocity)
+#	if abs(velocity.y) <= 5: velocity = Vector2(velocity.x, 0)
+#	if abs(velocity.x) <= 5: velocity = Vector2(0, velocity.y)
+
 	velocity = move_and_slide(velocity, Vector2(0, -1))
-	print('a: ', velocity)	
 	react()
 	debug()
