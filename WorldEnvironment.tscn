@@ -273,7 +273,7 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." index="1"]
 
-position = Vector2( 154.21, 94.7067 )
+position = Vector2( 180.029, 98.6789 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -846,7 +846,7 @@ _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Paus
 
 [node name="LeftRay" type="RayCast2D" parent="Body2D" index="0"]
 
-position = Vector2( 0.804764, 0.394188 )
+position = Vector2( 0.804764, -4.20581 )
 scale = Vector2( 0.8, 0.8 )
 enabled = true
 exclude_parent = true
@@ -866,7 +866,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="RightRay" type="RayCast2D" parent="Body2D" index="2"]
 
-position = Vector2( -1.41965, 0.39418 )
+position = Vector2( -1.41965, -4.20582 )
 scale = Vector2( 0.8, 0.8 )
 enabled = true
 exclude_parent = true

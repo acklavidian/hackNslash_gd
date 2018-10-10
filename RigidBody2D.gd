@@ -39,6 +39,8 @@ func _ready():
 	debug_output = $Camera2D.get_node('Debug')
 func is_touching_wall():
 	return $RightRay.is_colliding() || $LeftRay.is_colliding()
+func is_touching_floor():
+	return $FloorRay.is_colliding()
 func get_input():
 	var speed = 0
 	if velocity.y < 200: velocity.y += 5
@@ -47,9 +49,9 @@ func get_input():
 	if Input.is_action_just_pressed('jump') && jump_count < max_jump_count:
 		jump_count += 1
 		velocity.y = -jump_speed
-		if is_on_wall() && !is_on_floor():
+		if is_touching_wall() && !is_touching_floor():
 			base_speed = -base_speed
-	if Input.is_action_just_released('walk_right') || Input.is_action_just_released('walk_left'):
+	if Input.is_action_just_released('walk_right') || Input.is_action_just_released('walk_left') || is_touching_floor():
 		base_speed = abs(base_speed)
 	if Input.is_action_pressed('walk_right'):
 		if not is_on_wall(): speed = base_speed
@@ -152,14 +154,11 @@ func react():
 	$AnimatedSprite.play(animation)
 	
 func _physics_process(delta):
-	if is_on_floor():
+	if is_touching_floor() && !is_moving(UP):
 		jump_count = 0
-	elif is_on_wall():
+	elif is_touching_wall():
 		jump_count = 1
 	get_input()
-#	if abs(velocity.y) <= 5: velocity = Vector2(velocity.x, 0)
-#	if abs(velocity.x) <= 5: velocity = Vector2(0, velocity.y)
 
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 	react()
-	debug()
