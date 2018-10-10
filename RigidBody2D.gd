@@ -37,10 +37,13 @@ var is_attacking = false
 func _ready():
 	height = $CollisionShape2D.scale.y
 	debug_output = $Camera2D.get_node('Debug')
+	
 func is_touching_wall():
 	return $RightRay.is_colliding() || $LeftRay.is_colliding()
+	
 func is_touching_floor():
 	return $FloorRay.is_colliding()
+	
 func get_input():
 	var speed = 0
 	if velocity.y < 200: velocity.y += 5
