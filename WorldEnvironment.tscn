@@ -8,7 +8,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=6]
 [ext_resource path="res://ground.png" type="Texture" id=7]
 [ext_resource path="res://Background/Layer_0001_8.png" type="Texture" id=8]
-[ext_resource path="res://chain-link.png" type="Texture" id=9]
+[ext_resource path="res://headband.png" type="Texture" id=9]
 [ext_resource path="res://RigidBody2D.gd" type="Script" id=10]
 [ext_resource path="res://leaf.png" type="Texture" id=11]
 [ext_resource path="res://pushing/0.png" type="Texture" id=12]
@@ -69,13 +69,13 @@ extents = Vector2( 116.651, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 60.0045, 10 )
 
-[sub_resource type="SegmentShape2D" id=8]
+[sub_resource type="SegmentShape2D" id=5]
 
 custom_solver_bias = 0.0
 a = Vector2( 0, 0 )
 b = Vector2( 0, 10 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=6]
 
 render_priority = 0
 trail_divisor = 1
@@ -115,13 +115,13 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Damping", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Radial Accel", "Scale", "Spread", "Tangential Accel" ]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
 extents = Vector2( 7.98442, 6.59446 )
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=8]
 
 animations = [ {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
@@ -208,7 +208,7 @@ _sections_unfolded = [ "Scroll" ]
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
 
 modulate = Color( 0.859375, 0.859375, 0.859375, 1 )
-position = Vector2( -78.5754, 0 )
+position = Vector2( -80.5754, -27 )
 motion_scale = Vector2( 0.4, 1 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 0, 0 )
@@ -261,7 +261,6 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" index="3"]
 
-editor/display_folded = true
 self_modulate = Color( 0.945312, 0.945312, 0.945312, 1 )
 position = Vector2( -78.5754, 0 )
 motion_scale = Vector2( 0.9, 1 )
@@ -321,7 +320,6 @@ _sections_unfolded = [ "Material", "Visibility" ]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Node2D" index="0"]
 
-editor/display_folded = true
 scale = Vector2( 0.5, 0.5 )
 input_pickable = false
 collision_layer = 1
@@ -348,7 +346,6 @@ texture = ExtResource( 7 )
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="Node2D" index="1"]
 
-editor/display_folded = true
 position = Vector2( 51.8887, 15.9958 )
 scale = Vector2( 0.5, 0.5 )
 input_pickable = false
@@ -376,7 +373,6 @@ texture = ExtResource( 7 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Node2D" index="2"]
 
-editor/display_folded = true
 position = Vector2( 97.0323, 36.556 )
 scale = Vector2( 0.5, 0.5 )
 input_pickable = false
@@ -405,7 +401,6 @@ texture = ExtResource( 7 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Node2D" index="3"]
 
-editor/display_folded = true
 position = Vector2( -91.917, -30.2014 )
 scale = Vector2( 0.5, 0.5 )
 input_pickable = false
@@ -432,7 +427,6 @@ texture = ExtResource( 7 )
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="Node2D" index="4"]
 
-editor/display_folded = true
 position = Vector2( -40.0282, -14.2056 )
 scale = Vector2( 0.5, 0.5 )
 input_pickable = false
@@ -459,7 +453,6 @@ texture = ExtResource( 7 )
 
 [node name="Floor" type="StaticBody2D" parent="Node2D" index="5"]
 
-editor/display_folded = true
 position = Vector2( -230.381, 59.1924 )
 input_pickable = false
 collision_layer = 1
@@ -851,12 +844,13 @@ _sections_unfolded = [ "Offset", "Region", "Visibility" ]
 
 [node name="link" type="RigidBody2D" parent="." index="4"]
 
-position = Vector2( 116.239, 93.7539 )
+modulate = Color( 0.476562, 0.476562, 0.476562, 1 )
+position = Vector2( 115.79, 101.987 )
 input_pickable = false
-collision_layer = 1
+collision_layer = 2
 collision_mask = 1
 mode = 0
-mass = 1.0
+mass = 0.1
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
@@ -864,12 +858,13 @@ custom_integrator = false
 continuous_cd = 0
 contacts_reported = 0
 contact_monitor = false
-sleeping = false
+sleeping = true
 can_sleep = true
 linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
+linear_damp = 10.0
 angular_velocity = 0.0
 angular_damp = -1.0
+applied_force = Vector2( -5, 1 )
 _sections_unfolded = [ "Applied Forces", "Linear" ]
 __meta__ = {
 "_edit_group_": true
@@ -877,18 +872,21 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="link" index="0"]
 
+modulate = Color( 0.5625, 0.0373535, 0.0530432, 1 )
 texture = ExtResource( 9 )
+_sections_unfolded = [ "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="link" index="1"]
 
 position = Vector2( 0, -4.8477 )
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 disabled = true
 one_way_collision = true
 
 [node name="PinJoint2D" type="PinJoint2D" parent="." index="5"]
 
-position = Vector2( 116.612, 100.466 )
+modulate = Color( 0.476562, 0.476562, 0.476562, 1 )
+position = Vector2( 114.666, 108.549 )
 node_a = NodePath("../link")
 node_b = NodePath("../link2")
 bias = 0.0
@@ -897,12 +895,14 @@ softness = 0.0
 
 [node name="link2" type="RigidBody2D" parent="." index="6"]
 
-position = Vector2( 116.425, 104.382 )
+editor/display_folded = true
+modulate = Color( 0.476562, 0.476562, 0.476562, 1 )
+position = Vector2( 114.629, 110.818 )
 input_pickable = false
-collision_layer = 1
+collision_layer = 2
 collision_mask = 1
 mode = 0
-mass = 1.0
+mass = 0.1
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
@@ -910,30 +910,34 @@ custom_integrator = false
 continuous_cd = 0
 contacts_reported = 0
 contact_monitor = false
-sleeping = false
+sleeping = true
 can_sleep = true
 linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
+linear_damp = 5.0
 angular_velocity = 0.0
 angular_damp = -1.0
+applied_force = Vector2( -5, 1 )
+_sections_unfolded = [ "Applied Forces", "Linear" ]
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="link2" index="0"]
 
+modulate = Color( 0.5625, 0.0373535, 0.0530432, 1 )
 texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="link2" index="1"]
 
 position = Vector2( 0, -4.8477 )
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 disabled = true
 one_way_collision = true
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="." index="7"]
 
-position = Vector2( 115.866, 109.416 )
+modulate = Color( 0.476562, 0.476562, 0.476562, 1 )
+position = Vector2( 115.417, 113.308 )
 node_a = NodePath("../link2")
 node_b = NodePath("../link3")
 bias = 0.0
@@ -942,12 +946,13 @@ softness = 0.0
 
 [node name="link3" type="RigidBody2D" parent="." index="8"]
 
-position = Vector2( 116.425, 115.009 )
+modulate = Color( 0.476562, 0.476562, 0.476562, 1 )
+position = Vector2( 114.479, 117.853 )
 input_pickable = false
-collision_layer = 1
+collision_layer = 2
 collision_mask = 1
 mode = 0
-mass = 1.0
+mass = 0.1
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
@@ -958,27 +963,32 @@ contact_monitor = false
 sleeping = false
 can_sleep = true
 linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
+linear_damp = 0.0
 angular_velocity = 0.0
 angular_damp = -1.0
+applied_force = Vector2( -5, 1 )
+_sections_unfolded = [ "Linear", "Visibility" ]
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="link3" index="0"]
 
+modulate = Color( 0.5625, 0.0373535, 0.0530432, 1 )
 texture = ExtResource( 9 )
+_sections_unfolded = [ "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="link3" index="1"]
 
 position = Vector2( 0, -4.8477 )
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 disabled = true
 one_way_collision = true
 
 [node name="PinJoint2D3" type="PinJoint2D" parent="." index="9"]
 
-position = Vector2( 119.124, 118.66 )
+modulate = Color( 0.476562, 0.476562, 0.476562, 1 )
+position = Vector2( 116.13, 119.408 )
 node_a = NodePath("../link3")
 node_b = NodePath("../Body2D")
 bias = 0.0
@@ -987,7 +997,6 @@ softness = 0.0
 
 [node name="Body2D" type="KinematicBody2D" parent="." index="10"]
 
-editor/display_folded = true
 modulate = Color( 0.45018, 0.520413, 0.707031, 1 )
 position = Vector2( 116.775, 133.324 )
 scale = Vector2( 1.25, 1.25 )
@@ -1096,7 +1105,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 5 )
+process_material = SubResource( 6 )
 texture = ExtResource( 11 )
 normal_map = null
 h_frames = 1
@@ -1120,7 +1129,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 5 )
+process_material = SubResource( 6 )
 texture = ExtResource( 11 )
 normal_map = null
 h_frames = 1
@@ -1131,7 +1140,7 @@ _sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "T
 
 position = Vector2( 0, 0.867226 )
 scale = Vector2( 1, 2.31408 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_group_": true
@@ -1141,7 +1150,7 @@ __meta__ = {
 
 position = Vector2( -0.45953, -0.578094 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 7 )
+frames = SubResource( 8 )
 animation = "standing"
 _sections_unfolded = [ "Transform", "Visibility" ]
 
