@@ -1,4 +1,6 @@
 extends KinematicBody2D
+var Ability = load('res://Ability.gd')
+var AbilityQueue = load('res://AbilityQueue.gd')
 
 enum Direction { RIGHT LEFT UP DOWN HORIZONTAL VERTICAL }
 enum Status {
@@ -31,8 +33,6 @@ var height
 var status = {} setget , get_status
 var debug_output
 var is_attacking = false
-
-
 
 func _ready():
 	height = $CollisionShape2D.scale.y
